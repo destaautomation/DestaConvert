@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DestuyConvert</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>DestuyConvert</h1>
+    <p>Konversi dokumen Word dan Excel menjadi PDF dengan easy.</p>
+
+    <p>Praktis, sederhana, dan gratis.</p>
+    
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+
+<form action="/convert" method="POST" enctype="multipart/form-data">
+    <h3>Pilih dokumen kamu</h3>
+
+    <input
+        type="file"
+        name="file"
+        accept=".docx,.xlsx"
+        required
+    >
+
+    <p>Format yang didukung: Word (.docx) dan Excel (.xlsx)</p>
+
+    <button type="submit">Konversi ke Dokumen PDF</button>
+</form>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
